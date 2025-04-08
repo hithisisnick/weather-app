@@ -113,7 +113,7 @@ function App() {
 
           {/* Search Results Section */}
           {showResults && (
-            <div className='flex flex-col gap-4 mt-4'>
+            <div className='flex flex-col gap-4 my-4'>
               {hasSearched && searchResults.length > 0 && (
                 <div className='bg-white/20 dark:bg-darkgray/40 text-black dark:text-white rounded-lg p-4'>
                   <h2 className='text-sm font-normal mb-2'>
