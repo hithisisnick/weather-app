@@ -89,7 +89,7 @@ function App() {
           <Searchbar onSearch={handleSearch} />
 
           {/* Display loading text */}
-          {!loading && <Loading />}
+          {loading && <Loading />}
 
           {/* Display any error message */}
           {error && (
