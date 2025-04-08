@@ -52,14 +52,14 @@ const Searchbar = ({ onSearch }: { onSearch: (query: string) => void }) => {
             type='text'
             id='floating_helper'
             aria-describedby='floating_helper_text'
-            className='block rounded-lg px-2.5 pb-1.5 pt-4 w-full text-[12px] text-black dark:text-white bg-white/20 dark:bg-darkgray/40 border-0 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer'
+            className='block rounded-lg px-2.5 pb-1.5 pt-4 w-full text-[12px] text-black dark:text-white bg-white/20 dark:bg-darkgray/40 border-0 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer focus:text-[12px]'
             value={query}
             onChange={handleChange}
             placeholder=' '
           />
           <label
             htmlFor='floating_helper'
-            className='absolute text-[12px] text-black/40 dark:text-white/40 duration-300 transform scale-75 -translate-y-2.5 top-2.5 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto'>
+            className='absolute text-[12px] text-black/40 dark:text-white/40 duration-300 transform scale-75 -translate-y-1/2 top-1/2 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto'>
             Search
           </label>
         </div>
