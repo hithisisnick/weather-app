@@ -82,7 +82,7 @@ function App() {
   return (
     <>
       <meta name='description' content='Put your description here.' />
-      <main className='flex flex-col p-4 pb-0 md:px-0 h-screen bg-[url(./assets/bg-light.png)] dark:bg-[url(./assets/bg-dark.png)] bg-cover bg-center overflow-hidden'>
+      <main className='flex flex-col p-4 pb-0 md:px-0 h-screen bg-[url(./assets/bg-light.webp)] dark:bg-[url(./assets/bg-dark.webp)] bg-cover bg-center overflow-hidden'>
         <ThemeSwitcher />
 
         <div className='flex flex-col w-full max-w-[700px] h-full mx-auto'>

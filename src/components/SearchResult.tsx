@@ -1,6 +1,6 @@
 import { MagnifyingGlass, TrashSimple } from '@phosphor-icons/react';
-import cloud from '../assets/cloud.png';
-import sun from '../assets/sun.png';
+import cloud from '../assets/cloud.webp';
+import sun from '../assets/sun.webp';
 
 interface SearchResultProps {
   data: data;
