@@ -59,7 +59,7 @@ const Searchbar = ({ onSearch }: { onSearch: (query: string) => void }) => {
           />
           <label
             htmlFor='floating_helper'
-            className='absolute text-[12px] text-black/40 dark:text-white/40 duration-300 transform scale-75 -translate-y-1/2 top-1/2 z-10 origin-[0] start-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto'>
+            className='absolute text-[12px] text-black/40 dark:text-white/40 duration-300 transform scale-75 -translate-y-1/2 top-1/2 z-10 origin-[0] start-2.5 peer-focus:scale-75 peer-focus:-translate-y-5 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto'>
             Search
           </label>
         </div>

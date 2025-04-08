@@ -19,5 +19,5 @@ export interface WeatherResult {
   weather: {
     main: string;
   }[];
-  dt: number;
+  timestamp: number;
 }

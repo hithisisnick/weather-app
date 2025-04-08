@@ -23,7 +23,7 @@ interface data {
   weather: {
     main: string;
   }[];
-  dt: number;
+  timestamp: number;
 }
 
 const SearchResult = ({
@@ -32,7 +32,19 @@ const SearchResult = ({
   onRemoveFromHistory,
   onSelectResult,
 }: SearchResultProps) => {
-  console.log(data);
+  const formatDate = (timestamp: number) => {
+    const date = timestamp ? new Date(timestamp) : new Date();
+    return date
+      .toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+      .replace(/\//g, '-')
+      .replace(/,/g, '');
+  };
 
   return (
     <div className='flex flex-col gap-5 py-5 px-6 pb-0 mt-auto h-3/4 w-full bg-white/20 dark:bg-darkgray/40 rounded-t-[20px] outline outline-white/50 dark:outline-0 backdrop-blur-lg'>
@@ -75,16 +87,7 @@ const SearchResult = ({
 
         {/* Date and Time */}
         <span className='col-start-2 row-start-4 text-xs md:text-[16px] text-darkgray dark:text-white font-normal text-end md:text-start'>
-          {new Date(data.dt * 1000)
-            .toLocaleDateString('en-US', {
-              month: '2-digit',
-              day: '2-digit',
-              year: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-            })
-            .replace(/\//g, '-')
-            .replace(/,/g, '')}
+          {formatDate(data.timestamp)}
         </span>
       </div>
 
@@ -95,7 +98,7 @@ const SearchResult = ({
 
         <div className='overflow-y-auto flex-1 px-4 pb-4'>
           <ul className='flex flex-col gap-4.5'>
-            {searchHistory.map((item, index) => (
+            {[...searchHistory].reverse().map((item, index) => (
               <li
                 key={index}
                 className='flex items-center justify-between w-full md:gap-2.5 bg-white/40 dark:bg-darkgray/50 px-2.5 py-3.5 rounded-2xl shrink-0'>
@@ -104,16 +107,7 @@ const SearchResult = ({
                     {item.name}, {item.sys.country}
                   </span>
                   <span className='text-[10px] md:text-sm'>
-                    {new Date(data.dt * 1000)
-                      .toLocaleDateString('en-US', {
-                        month: '2-digit',
-                        day: '2-digit',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })
-                      .replace(/\//g, '-')
-                      .replace(/,/g, '')}
+                    {formatDate(item.timestamp)}
                   </span>
                 </div>
 

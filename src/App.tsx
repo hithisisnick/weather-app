@@ -52,17 +52,22 @@ function App() {
 
     try {
       const weatherData = await weatherService.getWeather(result.lat, result.lon);
+      const weatherDataWithTimestamp = {
+        ...weatherData,
+        timestamp: new Date().getTime(),
+      };
 
-      setSelectedResult(weatherData);
+      setSelectedResult(weatherDataWithTimestamp);
 
       setSearchHistory((prevHistory) => {
         const exists = prevHistory.some(
           (item) =>
-            item.name === weatherData.name && item.sys.country === weatherData.sys.country
+            item.name === weatherDataWithTimestamp.name &&
+            item.sys.country === weatherDataWithTimestamp.sys.country
         );
 
         if (!exists) {
-          return [...prevHistory, weatherData];
+          return [...prevHistory, weatherDataWithTimestamp];
         }
         return prevHistory;
       });
