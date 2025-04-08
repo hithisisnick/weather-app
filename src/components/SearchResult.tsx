@@ -126,7 +126,7 @@ const SearchResult = ({
                   </button>
                   <button
                     className='flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-transparent dark:border dark:border-white/40 shadow-lg cursor-pointer'
-                    onClick={() => onRemoveFromHistory(index)}
+                    onClick={() => onRemoveFromHistory(searchHistory.length - 1 - index)}
                     aria-label='Remove from history'>
                     <TrashSimple
                       size={16}
