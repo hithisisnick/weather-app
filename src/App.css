@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import 'tailwindcss';
+
+@theme inline {
+  --color-purple: hsla(263, 48%, 48%, 1);
+  --color-purple-dark: hsla(262, 62%, 19%, 1);
+  --color-gray: hsla(0, 0%, 40%, 1);
+  --color-darkgray: hsla(0, 0%, 10%, 1);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsla(0, 0%, 40%, 0.25) transparent;
+
+  transition: all 0.3s ease;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+input:-webkit-autofill-selected {
+  background-color: hsla(0, 0%, 100%, 0.2) !important;
+  color: hsla(0, 0%, 0%, 1) !important;
+}
+
+input:-webkit-autofill {
+  background-color: hsla(0, 0%, 100%, 0.2) !important;
+  color: hsla(0, 0%, 0%, 1) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  input:-webkit-autofill {
+    background-color: hsla(0, 0%, 10%, 0.4) !important;
+    color: hsla(0, 0%, 100%, 1) !important;
+  }
+
+  input:-webkit-autofill-selected {
+    background-color: hsla(0, 0%, 10%, 0.4) !important;
+    color: hsla(0, 0%, 100%, 1) !important;
+  }
+}
