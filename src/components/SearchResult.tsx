@@ -1,36 +1,21 @@
 import { MagnifyingGlass, TrashSimple } from '@phosphor-icons/react';
 import cloud from '../assets/cloud.webp';
 import sun from '../assets/sun.webp';
+import { WeatherResult } from '../types';
 
 interface SearchResultProps {
-  data: data;
-  searchHistory: data[];
+  data: WeatherResult;
+  searchHistory: WeatherResult[];
   onRemoveFromHistory: (index: number) => void;
-  onSelectResult: (result: data) => void;
-}
-
-interface data {
-  name: string;
-  sys: {
-    country: string;
-  };
-  main: {
-    humidity: number;
-    temp: number;
-    temp_max: number;
-    temp_min: number;
-  };
-  weather: {
-    main: string;
-  }[];
-  timestamp: number;
+  onSelectResult: (result: WeatherResult) => void;
+  onRefreshWeather: (lat: number, lon: number) => Promise<void>;
 }
 
 const SearchResult = ({
   data,
   searchHistory,
   onRemoveFromHistory,
-  onSelectResult,
+  onRefreshWeather,
 }: SearchResultProps) => {
   const formatDate = (timestamp: number) => {
     const date = timestamp ? new Date(timestamp) : new Date();
@@ -44,6 +29,13 @@ const SearchResult = ({
       })
       .replace(/\//g, '-')
       .replace(/,/g, '');
+  };
+
+  const handleRefreshWeather = async (item: WeatherResult) => {
+    // Store lat/lon in the history items
+    if (item.coord) {
+      await onRefreshWeather(item.coord.lat, item.coord.lon);
+    }
   };
 
   return (
@@ -115,7 +107,7 @@ const SearchResult = ({
                 <div className='flex gap-2.5'>
                   <button
                     className='flex items-center justify-center w-8 h-8 rounded-full bg-white hover:bg-white/50 dark:bg-transparent dark:border dark:hover:bg-white/40 dark:border-white/40 shadow-lg cursor-pointer'
-                    onClick={() => onSelectResult(item)}
+                    onClick={() => handleRefreshWeather(item)}
                     aria-label={`Select ${item.name}, ${item.sys.country}`}>
                     <MagnifyingGlass
                       size={16}

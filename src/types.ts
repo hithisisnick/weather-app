@@ -20,4 +20,8 @@ export interface WeatherResult {
     main: string;
   }[];
   timestamp: number;
+  coord: {
+    lat: number;
+    lon: number;
+  };
 }

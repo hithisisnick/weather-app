@@ -47,8 +47,12 @@ const Searchbar = ({
   useEffect(() => {
     if (clearInput) {
       setQuery('');
+
+      if (onSearch) {
+        onSearch('');
+      }
     }
-  }, [clearInput]);
+  }, [clearInput, onSearch]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -73,7 +77,7 @@ const Searchbar = ({
           <label
             htmlFor='floating_helper'
             className='absolute text-[12px] text-black/40 dark:text-white/40 duration-300 transform scale-75 -translate-y-1/2 top-1/2 z-10 origin-[0] start-2.5 peer-focus:scale-75 peer-focus:-translate-y-5 peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-5 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto'>
-            Search
+            Search city
           </label>
         </div>
         <button

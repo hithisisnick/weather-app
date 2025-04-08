@@ -22,6 +22,9 @@ function App() {
   const weatherService = new WeatherService(import.meta.env.VITE_OPENWEATHER_API_KEY);
 
   const handleSearch = async (query: string) => {
+    // Reset clearSearchInput when a new search starts
+    setClearSearchInput(false);
+
     // If query is empty, clear results and hide them
     if (!query.trim()) {
       setSearchResults([]);
@@ -80,6 +83,36 @@ function App() {
     }
   };
 
+  const handleRefreshWeather = async (lat: number, lon: number) => {
+    setLoading(true);
+    try {
+      const weatherData = await weatherService.getWeather(lat, lon);
+      const weatherDataWithTimestamp = {
+        ...weatherData,
+        timestamp: new Date().getTime(),
+      };
+
+      setSelectedResult(weatherDataWithTimestamp);
+
+      // Update search history to remove the old item and add the new one
+      setSearchHistory((prevHistory) => {
+        const filteredHistory = prevHistory.filter(
+          (item) =>
+            !(
+              item.name === weatherData.name &&
+              item.sys.country === weatherData.sys.country
+            )
+        );
+
+        return [...filteredHistory, weatherDataWithTimestamp];
+      });
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const removeFromHistory = (indexToRemove: number) => {
     setSearchHistory((prevHistory) =>
       prevHistory.filter((_, index) => index !== indexToRemove)
@@ -92,7 +125,18 @@ function App() {
       <main className='flex flex-col p-4 pb-0 md:px-0 h-screen bg-[url(./assets/bg-light.webp)] dark:bg-[url(./assets/bg-dark.webp)] bg-cover bg-center overflow-hidden'>
         <ThemeSwitcher />
 
-        <div className='flex flex-col w-full max-w-[710px] h-full mx-auto'>
+        <div
+          className={`flex flex-col w-full max-w-[710px] h-full mx-auto ${
+            hasSearched && selectedResult ? 'justify-start' : 'justify-center'
+          }`}>
+          {!selectedResult && (
+            <header className='mb-2'>
+              <h1 className='text-2xl font-semibold text-center text-black dark:text-white'>
+                Search for today's weather
+              </h1>
+            </header>
+          )}
+
           <Searchbar onSearch={handleSearch} clearInput={clearSearchInput} />
 
           {/* Display loading text */}
@@ -163,6 +207,7 @@ function App() {
               searchHistory={searchHistory}
               onRemoveFromHistory={removeFromHistory}
               onSelectResult={setSelectedResult}
+              onRefreshWeather={handleRefreshWeather}
             />
           )}
         </div>
