@@ -25,25 +25,3 @@
 *::-webkit-scrollbar-track {
   background: transparent;
 }
-
-input:-webkit-autofill-selected {
-  background-color: hsla(0, 0%, 100%, 0.2) !important;
-  color: hsla(0, 0%, 0%, 1) !important;
-}
-
-input:-webkit-autofill {
-  background-color: hsla(0, 0%, 100%, 0.2) !important;
-  color: hsla(0, 0%, 0%, 1) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  input:-webkit-autofill {
-    background-color: hsla(0, 0%, 10%, 0.4) !important;
-    color: hsla(0, 0%, 100%, 1) !important;
-  }
-
-  input:-webkit-autofill-selected {
-    background-color: hsla(0, 0%, 10%, 0.4) !important;
-    color: hsla(0, 0%, 100%, 1) !important;
-  }
-}
