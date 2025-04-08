@@ -1,9 +1,9 @@
 export const Loading = () => (
-  <div className='flex items-center mt-4'>
+  <div className='flex items-center mt-4 text-black dark:text-white'>
     <div role='status'>
       <svg
         aria-hidden='true'
-        className='w-4 h-4 me-2 text-gray-200 animate-spin dark:text-gray-600 fill-purple'
+        className='w-4 h-4 me-2 text-white/20 animate-spin fill-purple/50 dark:fill-white/50'
         viewBox='0 0 100 101'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'>
