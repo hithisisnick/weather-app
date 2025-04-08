@@ -28,7 +28,7 @@ const ThemeSwitcher = () => {
   return (
     <button
       onClick={toggleTheme}
-      className='fixed bottom-4 right-4 p-2 rounded-lg bg-white/20 dark:bg-darkgray/40 text-black dark:text-white hover:bg-white/30 dark:hover:bg-darkgray/50 transition-colors'
+      className='fixed bottom-4 right-4 p-2 rounded-lg text-white bg-purple dark:bg-purple-dark hover:bg-purple/80 dark:hover:bg-purple-dark/70 transition-colors cursor-pointer'
       aria-label='Toggle theme'>
       {theme === 'light' ? (
         <Moon size={24} weight='fill' />

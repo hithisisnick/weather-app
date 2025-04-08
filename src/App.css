@@ -19,7 +19,7 @@
   scrollbar-width: thin;
   scrollbar-color: hsla(0, 0%, 40%, 0.25) transparent;
 
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 *::-webkit-scrollbar-track {

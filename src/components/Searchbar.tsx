@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { MagnifyingGlass } from '@phosphor-icons/react';
 
-const Searchbar = ({ onSearch }: { onSearch: (query: string) => void }) => {
+const Searchbar = ({
+  onSearch,
+  clearInput,
+}: {
+  onSearch: (query: string) => void;
+  clearInput?: boolean;
+}) => {
   const [query, setQuery] = useState('');
   const [searchTimeout, setSearchTimeout] = useState<ReturnType<
     typeof setTimeout
@@ -37,6 +43,13 @@ const Searchbar = ({ onSearch }: { onSearch: (query: string) => void }) => {
     };
   }, [searchTimeout]);
 
+  // Add effect to clear input when clearInput changes
+  useEffect(() => {
+    if (clearInput) {
+      setQuery('');
+    }
+  }, [clearInput]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (query.trim()) {
@@ -65,7 +78,7 @@ const Searchbar = ({ onSearch }: { onSearch: (query: string) => void }) => {
         </div>
         <button
           type='submit'
-          className='p-2 rounded-lg bg-purple dark:bg-purple-dark'
+          className='p-2 rounded-lg bg-purple dark:bg-purple-dark hover:bg-purple/80 dark:hover:bg-purple-dark/70 transition-colors duration-200 cursor-pointer'
           aria-label='Search'>
           <MagnifyingGlass size={24} color='white' />
         </button>

@@ -14,6 +14,7 @@ function App() {
   const [searchResults, setSearchResults] = useState<GeocodingResult[]>([]);
   const [selectedResult, setSelectedResult] = useState<WeatherResult | null>(null);
   const [showResults, setShowResults] = useState(false);
+  const [clearSearchInput, setClearSearchInput] = useState(false);
   const [searchHistory, setSearchHistory] = useState<WeatherResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,6 +50,7 @@ function App() {
   const handleResultClick = async (result: GeocodingResult) => {
     setLoading(true);
     setShowResults(false);
+    setClearSearchInput(true);
 
     try {
       const weatherData = await weatherService.getWeather(result.lat, result.lon);
@@ -90,8 +92,8 @@ function App() {
       <main className='flex flex-col p-4 pb-0 md:px-0 h-screen bg-[url(./assets/bg-light.webp)] dark:bg-[url(./assets/bg-dark.webp)] bg-cover bg-center overflow-hidden'>
         <ThemeSwitcher />
 
-        <div className='flex flex-col w-full max-w-[700px] h-full mx-auto'>
-          <Searchbar onSearch={handleSearch} />
+        <div className='flex flex-col w-full max-w-[710px] h-full mx-auto'>
+          <Searchbar onSearch={handleSearch} clearInput={clearSearchInput} />
 
           {/* Display loading text */}
           {loading && <Loading />}
@@ -120,15 +122,12 @@ function App() {
           {showResults && (
             <div className='flex flex-col gap-4 my-4'>
               {hasSearched && searchResults.length > 0 && (
-                <div className='bg-white/20 dark:bg-darkgray/40 text-black dark:text-white rounded-lg p-4'>
-                  <h2 className='text-sm font-normal mb-2'>
-                    Found {searchResults.length} results:
-                  </h2>
-                  <ul className='flex flex-col gap-2'>
+                <div className='bg-white/20 dark:bg-darkgray/40 text-black dark:text-white rounded-lg py-4 px-2'>
+                  <ul className='text-sm text-darkgray dark:text-white'>
                     {searchResults.map((item: GeocodingResult, index) => (
                       <li key={index} className='text-sm font-normal'>
                         <button
-                          className='flex items-center gap-2 cursor-pointer'
+                          className='flex items-center w-full justify-between gap-2 py-2 px-4 rounded-lg hover:bg-white/40 dark:hover:bg-purple-dark/70 dark:hover:text-white cursor-pointer'
                           onClick={() => handleResultClick(item)}
                           aria-label={`Select ${item.name}, ${item.country}`}>
                           <span>

@@ -114,7 +114,7 @@ const SearchResult = ({
                 {/* Buttons for selecting and removing from history */}
                 <div className='flex gap-2.5'>
                   <button
-                    className='flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-transparent dark:border dark:border-white/40 shadow-lg cursor-pointer'
+                    className='flex items-center justify-center w-8 h-8 rounded-full bg-white hover:bg-white/50 dark:bg-transparent dark:border dark:hover:bg-white/40 dark:border-white/40 shadow-lg cursor-pointer'
                     onClick={() => onSelectResult(item)}
                     aria-label={`Select ${item.name}, ${item.sys.country}`}>
                     <MagnifyingGlass
@@ -125,7 +125,7 @@ const SearchResult = ({
                     />
                   </button>
                   <button
-                    className='flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-transparent dark:border dark:border-white/40 shadow-lg cursor-pointer'
+                    className='flex items-center justify-center w-8 h-8 rounded-full bg-white hover:bg-white/50 dark:bg-transparent dark:border dark:hover:bg-white/40 dark:border-white/40 shadow-lg cursor-pointer'
                     onClick={() => onRemoveFromHistory(searchHistory.length - 1 - index)}
                     aria-label='Remove from history'>
                     <TrashSimple
